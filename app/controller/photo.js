@@ -19,7 +19,7 @@ module.exports = app => {
     async show(ctx) {
       const list = await ctx.app.model.Gallery.findAll({
         order: [
-          ['index', 'DESC'],
+          [ 'index', 'DESC' ],
         ],
       });
 
@@ -50,6 +50,14 @@ module.exports = app => {
         200,
         photos_list.map((photos, idx) => {
           const gallery = list[idx];
+
+          if (!gallery.is_expired) {
+            // 投票期间隐藏成员信息
+            photos = photos.map(photo => {
+              return { ...photo, member: null, member_id: null };
+            });
+          }
+
           return Object.assign(gallery.toJSON(), { photos });
         })
       );

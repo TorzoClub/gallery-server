@@ -57,24 +57,27 @@ module.exports = app => {
         }
       }
 
-      ctx.backData(
-        200,
-        photos_list.map((photos, idx) => {
-          const gallery = list[idx];
+      const galleries = photos_list.map((photos, idx) => {
+        const gallery = list[idx];
 
-          if (!gallery.is_expired) {
-            // 投票期间隐藏成员信息
-            photos = photos.map(photo => {
-              return { ...photo, member: null, member_id: null };
-            });
-          }
-
-          return Object.assign(gallery.toJSON(), {
-            vote_submitted: !photos.every(photo => !photo.is_voted),
-            photos,
+        if (!gallery.is_expired) {
+          // 投票期间隐藏成员信息
+          photos = photos.map(photo => {
+            return { ...photo, member: null, member_id: null };
           });
-        })
-      );
+        }
+
+        return Object.assign(gallery.toJSON(), {
+          vote_submitted: !photos.every(photo => !photo.is_voted),
+          photos,
+        });
+      });
+
+      const isNotExpiredGalleries = galleries.filter(gallery => !gallery.is_expired);
+      ctx.backData(200, {
+        active: isNotExpiredGalleries.length ? isNotExpiredGalleries[0] : null,
+        galleries: galleries.filter(gallery => gallery.is_expired),
+      });
     }
   };
 };

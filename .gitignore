@@ -15,3 +15,5 @@ typings/
 .nyc_output/
 
 config/config.local.js
+config/config.prod.js
+config/config.unittest.js

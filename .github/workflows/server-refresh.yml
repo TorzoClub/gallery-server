@@ -28,8 +28,8 @@ jobs:
         NODE_ENV: development
       run: |
         printf "#!/bin/bash\n" > ./server_exec.sh
-        printf "SERVER_PATH=${{secrets.SERVER_PATH}}\n" > ./server_exec.sh
-        cat ./scripts/server-refresh.sh > ./server_exec.sh
+        printf "SERVER_PATH=${{secrets.SERVER_PATH}}\n" >> ./server_exec.sh
+        cat ./scripts/server-refresh.sh >> ./server_exec.sh
         chmod +x ./server_exec.sh
 
     - name: Exec Script

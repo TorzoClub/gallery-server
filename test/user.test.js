@@ -80,31 +80,31 @@ async function constructEnvironment(noSync) {
   }
 }
 
-// describe('fetchList', () => {
-//   it('no activity', async () => {
-//     const { app } = await constructEnvironment()
-//     const data = await fetchList(app)
-//     assert(data.active === null)
-//     assert(Array.isArray(data.galleries))
-//   })
+describe('fetchList', () => {
+  it('no activity', async () => {
+    const { app } = await constructEnvironment()
+    const data = await fetchList(app)
+    assert(data.active === null)
+    assert(Array.isArray(data.galleries))
+  })
 
-//   it('has activity', async () => {
-//     const { gallery: expiredGallery } = await constructEnvironment()
-//     const { app, token, gallery: activeGallery } = await constructEnvironment(true)
+  it('has activity', async () => {
+    const { gallery: expiredGallery } = await constructEnvironment()
+    const { app, token, gallery: activeGallery } = await constructEnvironment(true)
 
-//     const d = new Date
-//     d.setDate(d.getDate() + 1)
-//     await updateGalleryById(token, app, activeGallery.id, {
-//       vote_expire: d.toISOString()
-//     })
-//     const data = await fetchList(app)
-//     assert(typeof data.active === 'object')
-//     assert(Array.isArray(data.galleries))
+    const d = new Date
+    d.setDate(d.getDate() + 1)
+    await updateGalleryById(token, app, activeGallery.id, {
+      vote_expire: d.toISOString()
+    })
+    const data = await fetchList(app)
+    assert(typeof data.active === 'object')
+    assert(Array.isArray(data.galleries))
     
-//     assert(data.active.id === activeGallery.id)
-//     assert(data.galleries[0].id === expiredGallery.id)
-//   })
-// })
+    assert(data.active.id === activeGallery.id)
+    assert(data.galleries[0].id === expiredGallery.id)
+  })
+})
 
 describe('fetchList with QQNum', () => {
   it('no activity', async () => {

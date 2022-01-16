@@ -37,7 +37,7 @@ describe('controller/admin/member', () => {
     getMemberById(token, app, deletedMember.id, 404)
   })
 
-  it('admin show gallery', () => {
+  it('admin show member', () => {
     return app.httpRequest()
       .get('/api/admin/member')
       .set('Authorization', token)

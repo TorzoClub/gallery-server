@@ -58,9 +58,9 @@ module.exports = app =>
       const writeStream = fs.createWriteStream(writePath);
 
       await (new Promise((res, rej) => {
-        stream.pipe(writeStream);
+        stream.on('data', chunk => writeStream.write(chunk));
         stream.on('end', () => {
-          res();
+          writeStream.end(res);
         });
         stream.on('error', rej);
       }));

@@ -49,7 +49,7 @@ describe('controller/admin/photo', () => {
     await createRandomPhoto()
   })
 
-  it('admin delete member', async () => {
+  it('admin delete photo', async () => {
     const member = await createMember(token, app, { qq_num: 22224 })
     const gallery = await createGallery(token, app)
     const newPhoto = await createPhoto(token, app, {

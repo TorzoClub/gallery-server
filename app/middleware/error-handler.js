@@ -27,8 +27,6 @@ module.exports = () =>
     try {
       await next();
     } catch (err) {
-      console.error('error:', err);
-
       const { message } = err;
       if (message === 'Validation Failed') {
         validError(ctx, err);
@@ -47,6 +45,8 @@ module.exports = () =>
 
         return;
       }
+
+      console.error('error:', err);
 
       ctx.backData(500, {
         ...err,

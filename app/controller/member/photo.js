@@ -36,8 +36,6 @@ module.exports = app => {
         for (let p = 0; p < photos.length; ++p) {
           const ownerMember = await photos[p].getMember();
 
-          console.log('photos[p]', photos[p].desc, photos[p].toJSON());
-
           const vote = await ctx.service.vote.Model.findOne({
             where: {
               member_id: member.id,

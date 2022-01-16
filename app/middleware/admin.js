@@ -33,7 +33,7 @@ module.exports = (ctx, next) => {
       });
     }
 
-    console.error('token failure', err);
+    // console.error('token failure', err);
 
     ctx.backData(403, {
       ILLEGAL_TOKEN: true,

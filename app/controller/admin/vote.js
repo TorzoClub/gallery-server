@@ -2,17 +2,17 @@
 
 module.exports = app => {
   class VoteController extends app.Controller {
-    async create(ctx) {
-    }
+    // async create(ctx) {
+    // }
 
-    async remove(ctx) {
-    }
+    // async remove(ctx) {
+    // }
 
-    async show(ctx) {
-    }
+    // async show(ctx) {
+    // }
 
-    async edit(ctx) {
-    }
+    // async edit(ctx) {
+    // }
   }
 
   return VoteController;
